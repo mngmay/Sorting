@@ -31,7 +31,7 @@ def bubble_sort(arr):
 
 
 # STRETCH: implement the Count Sort function below
-
+# Reference vid: https://www.youtube.com/watch?v=OKd534EWcdk
 # Time: O(n+k), Space: O(n+k)
 def count_sort(arr, maximum=-1):
     # count the number of occurences for each num in arr
@@ -39,7 +39,10 @@ def count_sort(arr, maximum=-1):
     count_arr = [0 for num in range(maximum+1)]
 
     for num in arr:
-        count_arr[num] += 1
+        if num < 0:
+            return "Error, negative numbers not allowed in Count Sort"
+        else:
+            count_arr[num] += 1
 
     print("step 1", "num_arr", num_arr, "count_arr", count_arr)
     # add each number to the right cumatively - index 0 stays the same
