@@ -3,7 +3,40 @@ def merge(arrA, arrB):
     elements = len(arrA) + len(arrB)
     merged_arr = [0] * elements
     # TO-DO
-    merged_arr = arrA+arrB
+    print("initial", arrA, arrB)
+
+    # keep track of index for arrA
+    i = 0
+    # keep track of index for arrB
+    j = 0
+    # keep track of index for merged_array
+    k = 0
+
+    # while both arrays have values
+    while i < len(arrA) and j < len(arrB):
+        if arrA[i] <= arrB[j]:
+            # add smallest value to merged_arr
+            merged_arr[k] = arrA[i]
+            # increment to view next index of arrA and merged_arr
+            i += 1
+            k += 1
+        else:
+            merged_arr[k] = arrB[j]
+            j += 1
+            k += 1
+
+    # take care of conditions when a subarray is empty, apply the same logic to the remaining array
+    while i < len(arrA):
+        merged_arr[k] = arrA[i]
+        i += 1
+        k += 1
+
+    while j < len(arrB):
+        merged_arr[k] = arrB[j]
+        k += 1
+        j += 1
+
+    print(merged_arr)
 
     return merged_arr
 
@@ -14,20 +47,13 @@ def merge_sort(arr):
     if len(arr) <= 1:
         return arr
 
-    left = []
-    pivot = arr[0]
-    right = []
+    # split array in half
+    midpoint = int(len(arr)/2)
 
-    for num in arr[1:]:
-        if num <= pivot:
-            left.append(num)
-        else:
-            right.append(num)
+    left = merge_sort(arr[:midpoint])
+    right = merge_sort(arr[midpoint:])
 
-    left.append(pivot)
-    # print(left, right)
-
-    return merge_sort(left) + merge_sort(right)
+    return merge(left, right)
 
 
 # STRETCH: implement an in-place merge sort algorithm
