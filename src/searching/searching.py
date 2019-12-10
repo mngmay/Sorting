@@ -37,19 +37,16 @@ def binary_search_recursive(arr, target, low, high):
 
     middle = (low+high)//2
 
-    lh = arr[:middle]
-    rh = arr[middle:]
-    print(arr, "middle", middle, "lh", lh, "rh", rh)
+    if len(arr) == 0:
+        return -1  # array empty
 
     if arr[middle] == target:
         return middle
 
+    # TO-DO: add missing if/else statements, recursive calls
+
     if target < arr[middle]:
-        return binary_search_recursive(lh, target, low, middle-1)
+        return binary_search_recursive(arr, target, low, middle-1)
 
     else:
-        return binary_search_recursive(rh, target, middle, high)
-
-    if len(arr) == 0:
-        return -1  # array empty
-    # TO-DO: add missing if/else statements, recursive calls
+        return binary_search_recursive(arr, target, middle+1, high)
