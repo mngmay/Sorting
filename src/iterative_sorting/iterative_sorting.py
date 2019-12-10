@@ -34,6 +34,14 @@ def bubble_sort(arr):
 # Reference vid: https://www.youtube.com/watch?v=OKd534EWcdk
 # Time: O(n+k), Space: O(n+k)
 def count_sort(arr, maximum=-1):
+    # take care of out of range error
+    if len(arr) < 1:
+        return []
+
+    if(maximum == -1 and len(arr) > 0):
+        maximum = max(arr)
+        # print("maximum!", max(arr))
+
     # count the number of occurences for each num in arr
     num_arr = [num for num in range(maximum+1)]
     count_arr = [0 for num in range(maximum+1)]
@@ -69,11 +77,12 @@ def count_sort(arr, maximum=-1):
         final_arr[count_arr[target_index]] = num
         count_arr[target_index] += 1
 
-    print("step 4", "num_arr", num_arr, "count_arr", count_arr)
+    print("step 4", "final_arr", final_arr)
 
     arr = final_arr
 
     return arr
 
 
-print(count_sort([1, 0, 3, 1, 3, 1], 3))
+# print(count_sort([1, 0, 3, 1, 3, 1], 3))
+print(count_sort([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
