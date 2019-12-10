@@ -48,7 +48,7 @@ def merge_sort(arr):
         return arr
 
     # split array in half
-    midpoint = int(len(arr)/2)
+    midpoint = len(arr)//2
 
     left = merge_sort(arr[:midpoint])
     right = merge_sort(arr[midpoint:])
